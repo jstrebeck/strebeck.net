@@ -1,0 +1,6 @@
+[submodule "blog.strebeck.net/themes/terminal"]
+	path = blog.strebeck.net/themes/terminal
+	url = https://github.com/panr/hugo-theme-terminal.git
+[submodule "blog.strebeck.net/themes/re-terminal"]
+	path = blog.strebeck.net/themes/re-terminal
+	url = https://github.com/mirus-ua/hugo-theme-re-terminal.git
