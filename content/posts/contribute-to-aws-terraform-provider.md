@@ -1,17 +1,8 @@
-+++
-title = "Contribute to the aws Terraform Provider"
-date = "2024-12-07T13:29:25-08:00"
-#dateFormat = "2006-01-02" # This value can be configured for per-post date formatting
-author = ""
-authorTwitter = "" #do not include @
-cover = ""
-tags = ["aws", "devops", "terraform"]
-keywords = ["", ""]
-description = ""
-showFullContent = false
-readingTime = false
-hideComments = false
-+++
+---
+title: "Contribute to the aws Terraform Provider"
+date: "2024-12-07T13:29:25-08:00"
+tags: ["aws", "devops", "terraform"]
+---
 
 # Configure Development Environment
 - Install Terraform and go

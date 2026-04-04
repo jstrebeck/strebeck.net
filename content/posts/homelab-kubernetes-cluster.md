@@ -1,14 +1,8 @@
-+++
-title = "Fastest way to create a homelab Kubernetes cluster"
-date = "2024-10-12T12:30:57-08:00"
-#dateFormat = "2006-01-02" # This value can be configured for per-post date formatting
-cover = ""
-tags = ["kubernetes", "homelab"]
-keywords = ["", ""]
-showFullContent = false
-readingTime = false
-hideComments = false
-+++
+---
+title: "Fastest way to create a homelab Kubernetes cluster"
+date: "2024-10-12T12:30:57-08:00"
+tags: ["kubernetes", "homelab"]
+---
 
 Talos is preconfigured operating system that makes it easy to setup your control plane and get nodes added. 
 
