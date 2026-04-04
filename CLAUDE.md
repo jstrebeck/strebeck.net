@@ -22,7 +22,7 @@ hugo new posts/my-post-title.md
 
 ## Deployment
 
-- Pushes to `main` trigger GitHub Actions (`.github/workflows/hugo.yaml`) which builds with Hugo extended v0.137.1 and deploys to GitHub Pages.
+- Pushes to `main` trigger GitHub Actions (`.github/workflows/hugo.yaml`) which builds with Hugo extended v0.147.0 and deploys to GitHub Pages.
 - There is also a `Dockerfile` for container-based builds (multi-stage: Hugo build -> nginx serve on port 80).
 
 ## Architecture
