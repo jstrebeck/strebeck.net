@@ -1,11 +1,7 @@
-+++
-title = "Joshua Strebeck"
-cover = ""
-description = ""
-showFullContent = false
-readingTime = false
-hideComments = false
-+++
+---
+title: "Joshua Strebeck"
+ShowToc: false
+---
 
 ![Josh-Image](https://media.licdn.com/dms/image/v2/D5603AQGzJ4q-3A_Y2g/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1691695220507?e=1738800000&v=beta&t=iuW94u1uBTWlC3aQcdePHq-52bUm7_cE3x_MZZ3S_CQ)
 
