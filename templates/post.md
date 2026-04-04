@@ -4,5 +4,5 @@ date: "{{DATE}}"
 author: "{{AUTHOR}}"
 tags: [{{TAGS}}]
 summary: "{{DESCRIPTION}}"
-draft: true
+draft: false
 ---

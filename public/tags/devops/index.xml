@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Devops on STREBECK</title>
+    <link>http://localhost:35663/tags/devops/</link>
+    <description>Recent content in Devops on STREBECK</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 07 Dec 2024 13:29:25 -0800</lastBuildDate>
+    <atom:link href="http://localhost:35663/tags/devops/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Contribute to the aws Terraform Provider</title>
+      <link>http://localhost:35663/posts/contribute-to-aws-terraform-provider/</link>
+      <pubDate>Sat, 07 Dec 2024 13:29:25 -0800</pubDate>
+      <guid>http://localhost:35663/posts/contribute-to-aws-terraform-provider/</guid>
+      <description>&lt;h1 id=&#34;configure-development-environment&#34;&gt;Configure Development Environment&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Install Terraform and go
+&lt;ul&gt;
+&lt;li&gt;I used the version in the default Ubuntu apt repos&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Using ZSH
+&lt;ul&gt;
+&lt;li&gt;If you are using zsh I recommend adding the following line to your &lt;code&gt;.zshrc&lt;/code&gt;
+&lt;code&gt;export PATH=&amp;quot;$PATH:$(go env GOPATH)/bin&amp;quot;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://stackoverflow.com/questions/42614380/go-install-not-working-with-zsh&#34;&gt;Credits to mmik in this post&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Tags on STREBECK</title>
+    <link>http://localhost:35663/tags/</link>
+    <description>Recent content in Tags on STREBECK</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 04 Apr 2026 09:24:57 -0700</lastBuildDate>
+    <atom:link href="http://localhost:35663/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kubeflow</title>
+      <link>http://localhost:35663/tags/kubeflow/</link>
+      <pubDate>Sat, 04 Apr 2026 09:24:57 -0700</pubDate>
+      <guid>http://localhost:35663/tags/kubeflow/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Machine-Learning</title>
+      <link>http://localhost:35663/tags/machine-learning/</link>
+      <pubDate>Sat, 04 Apr 2026 09:24:57 -0700</pubDate>
+      <guid>http://localhost:35663/tags/machine-learning/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Mlflow</title>
+      <link>http://localhost:35663/tags/mlflow/</link>
+      <pubDate>Sat, 04 Apr 2026 09:24:57 -0700</pubDate>
+      <guid>http://localhost:35663/tags/mlflow/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Pytorch</title>
+      <link>http://localhost:35663/tags/pytorch/</link>
+      <pubDate>Sat, 04 Apr 2026 09:24:57 -0700</pubDate>
+      <guid>http://localhost:35663/tags/pytorch/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Aws</title>
+      <link>http://localhost:35663/tags/aws/</link>
+      <pubDate>Sat, 07 Dec 2024 13:29:25 -0800</pubDate>
+      <guid>http://localhost:35663/tags/aws/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Devops</title>
+      <link>http://localhost:35663/tags/devops/</link>
+      <pubDate>Sat, 07 Dec 2024 13:29:25 -0800</pubDate>
+      <guid>http://localhost:35663/tags/devops/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Terraform</title>
+      <link>http://localhost:35663/tags/terraform/</link>
+      <pubDate>Sat, 07 Dec 2024 13:29:25 -0800</pubDate>
+      <guid>http://localhost:35663/tags/terraform/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Homelab</title>
+      <link>http://localhost:35663/tags/homelab/</link>
+      <pubDate>Sat, 12 Oct 2024 12:30:57 -0800</pubDate>
+      <guid>http://localhost:35663/tags/homelab/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Kubernetes</title>
+      <link>http://localhost:35663/tags/kubernetes/</link>
+      <pubDate>Sat, 12 Oct 2024 12:30:57 -0800</pubDate>
+      <guid>http://localhost:35663/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>
