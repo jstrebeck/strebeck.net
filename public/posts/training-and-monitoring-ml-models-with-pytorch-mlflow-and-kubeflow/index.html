@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto" data-theme="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=35663&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="noindex, nofollow">
 <title>Training and Monitoring ML Models With PyTorch, MLflow, and Kubeflow | STREBECK</title>
-<meta name="keywords" content="machine-learning, pytorch, mlflow, kubeflow">
-<meta name="description" content="A walkthrough of learning to train and monitor machine learning models using PyTorch, MLflow, and Kubeflow.">
+<meta name="keywords" content="machine-learning, pytorch, mlflow, kubeflow, kubernetes">
+<meta name="description" content="Building a demand forecasting pipeline from scratch to learn PyTorch, MLflow, and Kubeflow on my homelab Kubernetes cluster.">
 <meta name="author" content="Josh Strebeck">
-<link rel="canonical" href="http://localhost:35663/posts/training-and-monitoring-ml-models-with-pytorch-mlflow-and-kubeflow/">
+<link rel="canonical" href="http://localhost:1313/posts/training-and-monitoring-ml-models-with-pytorch-mlflow-and-kubeflow/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.199042e659bc7245f5609d333d6c044eb554a0640849bb874e1dff8eb0f57209.css" integrity="sha256-GZBC5lm8ckX1YJ0zPWwETrVUoGQISbuHTh3/jrD1cgk=" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:35663/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:35663/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:35663/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://localhost:35663/apple-touch-icon.png">
-<link rel="mask-icon" href="http://localhost:35663/safari-pinned-tab.svg">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="http://localhost:35663/posts/training-and-monitoring-ml-models-with-pytorch-mlflow-and-kubeflow/">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/training-and-monitoring-ml-models-with-pytorch-mlflow-and-kubeflow/">
 <noscript>
     <style>
         #theme-toggle,
@@ -76,7 +76,7 @@
     <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://localhost:35663/" accesskey="h" title="STREBECK (Alt + H)">STREBECK</a>
+            <a href="http://localhost:1313/" accesskey="h" title="STREBECK (Alt + H)">STREBECK</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -102,17 +102,17 @@
         </div>
         <ul id="menu">
             <li>
-                <a href="http://localhost:35663/" title="Blog">
+                <a href="http://localhost:1313/" title="Blog">
                     <span>Blog</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:35663/about" title="About">
+                <a href="http://localhost:1313/about" title="About">
                     <span>About</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:35663/tags" title="Tags">
+                <a href="http://localhost:1313/tags" title="Tags">
                     <span>Tags</span>
                 </a>
             </li>
@@ -123,28 +123,128 @@
 
 <article class="post-single">
   <header class="post-header">
-    <div class="breadcrumbs"><a href="http://localhost:35663/">Home</a>&nbsp;»&nbsp;<a href="http://localhost:35663/posts/">Posts</a></div>
+    <div class="breadcrumbs"><a href="http://localhost:1313/">Home</a>&nbsp;»&nbsp;<a href="http://localhost:1313/posts/">Posts</a></div>
     <h1 class="post-title entry-hint-parent">
       Training and Monitoring ML Models With PyTorch, MLflow, and Kubeflow
     </h1>
-    <div class="post-meta"><span title='2026-04-04 09:24:57 -0700 PDT'>April 4, 2026</span>&nbsp;·&nbsp;<span>0 min</span>&nbsp;·&nbsp;<span>Josh Strebeck</span>
+    <div class="post-meta"><span title='2026-04-04 09:24:57 -0700 PDT'>April 4, 2026</span>&nbsp;·&nbsp;<span>5 min</span>&nbsp;·&nbsp;<span>Josh Strebeck</span>
 
 </div>
-  </header> 
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
 
+        <div class="inner"><ul>
+                <li>
+                    <a href="#why-this-project" aria-label="Why This Project">Why This Project</a></li>
+                <li>
+                    <a href="#phase-1-data-pipeline-and-feature-engineering" aria-label="Phase 1: Data Pipeline and Feature Engineering">Phase 1: Data Pipeline and Feature Engineering</a></li>
+                <li>
+                    <a href="#phase-2-model-training-with-pytorch" aria-label="Phase 2: Model Training with PyTorch">Phase 2: Model Training with PyTorch</a></li>
+                <li>
+                    <a href="#phase-3-mlflow-on-kubernetes" aria-label="Phase 3: MLflow on Kubernetes">Phase 3: MLflow on Kubernetes</a></li>
+                <li>
+                    <a href="#phase-5-partial-model-serving" aria-label="Phase 5 (partial): Model Serving">Phase 5 (partial): Model Serving</a></li>
+                <li>
+                    <a href="#whats-left" aria-label="What&rsquo;s Left">What&rsquo;s Left</a></li>
+                <li>
+                    <a href="#what-ive-learned-so-far" aria-label="What I&rsquo;ve Learned So Far">What I&rsquo;ve Learned So Far</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><p>I&rsquo;ve spent about a week building out a demand forecasting project from scratch as a way to get hands-on with the ML and MLOps tooling I&rsquo;ve been wanting to learn. The goal was straightforward: take some real transaction data, predict weekly order volumes, and stand up the full infrastructure to train, track, serve, and eventually retrain models automatically. I wanted to do it all on my own hardware, not in a managed cloud service, because I learn more when I have to figure out the plumbing myself.</p>
+<p>This post covers where the project stands today, what&rsquo;s worked, what surprised me, and what&rsquo;s left to build.</p>
+<h2 id="why-this-project">Why This Project<a hidden class="anchor" aria-hidden="true" href="#why-this-project">#</a></h2>
+<p>I come from a DevOps background, so Kubernetes and infrastructure are home turf for me. But I wanted to bridge into MLOps, and the best way I know to learn something is to build it end-to-end. Reading docs and watching tutorials only gets you so far — at some point you need to hit real problems with real data.</p>
+<p>I picked demand forecasting because the data is tabular, the problem is well-understood, and it gave me an excuse to touch every layer of the stack: data pipeline, feature engineering, model training, experiment tracking, model registry, serving, and (eventually) automated retraining and monitoring.</p>
+<h2 id="phase-1-data-pipeline-and-feature-engineering">Phase 1: Data Pipeline and Feature Engineering<a hidden class="anchor" aria-hidden="true" href="#phase-1-data-pipeline-and-feature-engineering">#</a></h2>
+<p>This is the part that took longer than I expected. The raw data was CSV exports — messy encoding, grouped report formatting, duplicate records across multiple files. Cleaning that up and getting it into a usable shape was a project in itself.</p>
+<p>Once the data was clean, I built out weekly aggregations with zero-fill for weeks where nothing was ordered (sparse demand is the norm here, not the exception). The feature engineering ended up being the most interesting part of this phase:</p>
+<ul>
+<li><strong>Lag features</strong>: 1 through 4 weeks of historical order quantities</li>
+<li><strong>Rolling statistics</strong>: mean and standard deviation over 4-week and 12-week windows</li>
+<li><strong>Calendar/seasonality</strong>: week of year, month, quarter, plus cyclical sin/cos encodings so the model doesn&rsquo;t treat December and January as maximally far apart</li>
+<li><strong>Item profile stats</strong>: lifetime mean, standard deviation, max, and active rate per SKU</li>
+</ul>
+<p>Everything gets stored in both Parquet files and PostgreSQL. Parquet for fast local iteration, Postgres for the serving layer to query at inference time.</p>
+<h2 id="phase-2-model-training-with-pytorch">Phase 2: Model Training with PyTorch<a hidden class="anchor" aria-hidden="true" href="#phase-2-model-training-with-pytorch">#</a></h2>
+<p>I trained three models to compare approaches:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Model</th>
+          <th>MAE</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Linear Regression</td>
+          <td>1.04</td>
+      </tr>
+      <tr>
+          <td>XGBoost</td>
+          <td>0.59</td>
+      </tr>
+      <tr>
+          <td>LSTM</td>
+          <td>1.21</td>
+      </tr>
+  </tbody>
+</table>
+<p>XGBoost won by a wide margin, which honestly wasn&rsquo;t surprising for tabular data with engineered features. The LSTM was the most fun to build but performed the worst — I think it would need a lot more data and tuning to beat the tree-based approach here.</p>
+<p>One gotcha: MAPE (mean absolute percentage error) looked terrible across all models, but that&rsquo;s because so many weeks have zero or near-zero orders. When your actual value is 1 and you predict 2, that&rsquo;s 100% error by MAPE but only 1 unit off by MAE. For sparse demand like this, MAE tells the real story.</p>
+<p>All training ran on my RTX 4070 through WSL2. The GPU was overkill for XGBoost and linear regression but made the LSTM training loop noticeably faster.</p>
+<h2 id="phase-3-mlflow-on-kubernetes">Phase 3: MLflow on Kubernetes<a hidden class="anchor" aria-hidden="true" href="#phase-3-mlflow-on-kubernetes">#</a></h2>
+<p>This was the phase where my DevOps background actually paid off. I deployed an MLflow tracking server on my <a href="/posts/homelab-kubernetes-cluster/">Talos Kubernetes cluster</a> with PostgreSQL as the backend store and Ceph persistent volumes for artifact storage.</p>
+<p>The setup:</p>
+<ul>
+<li>Custom Docker image pushed to my private registry</li>
+<li><code>mlflow-skinny</code> client on my workstation for lightweight experiment logging</li>
+<li>Artifacts stored via <code>pickle</code> and <code>torch.save</code></li>
+</ul>
+<p>After training, XGBoost got promoted to the MLflow model registry as version 1 with a <code>staging</code> alias. Having a proper registry instead of just saving model files to disk changes the workflow completely — now the serving layer can just ask for &ldquo;the current staging model&rdquo; without knowing anything about file paths or versions.</p>
+<h2 id="phase-5-partial-model-serving">Phase 5 (partial): Model Serving<a hidden class="anchor" aria-hidden="true" href="#phase-5-partial-model-serving">#</a></h2>
+<p>I jumped ahead to model serving before tackling Kubeflow pipelines because I wanted a working end-to-end demo sooner rather than later.</p>
+<p>The serving app is a FastAPI service with three endpoints:</p>
+<ul>
+<li><code>/predict</code> — single prediction for a given SKU and date</li>
+<li><code>/predict/batch</code> — multiple SKU predictions in one call</li>
+<li><code>/predict/forecast</code> — multi-week forecast for planning</li>
+</ul>
+<p>It pulls the current staging model from MLflow and queries PostgreSQL for the latest features at inference time. Right now it runs locally — deploying it to Kubernetes with KServe is on the list.</p>
+<h2 id="whats-left">What&rsquo;s Left<a hidden class="anchor" aria-hidden="true" href="#whats-left">#</a></h2>
+<p>Three phases are still outstanding:</p>
+<p><strong>Phase 4: Kubeflow Pipelines</strong> — This is the big one I&rsquo;m most excited about. Automated retraining pipelines that kick off when new data arrives, retrain the model, evaluate it against the current production model, and promote it if it&rsquo;s better. Haven&rsquo;t started this yet.</p>
+<p><strong>Phase 5 (remaining): Kubernetes deployment</strong> — Getting the FastAPI serving app onto the cluster with KServe. The app itself is done, it&rsquo;s just the deployment and networking piece left.</p>
+<p><strong>Phase 6: Monitoring and Drift Detection</strong> — Setting up alerts for when the model&rsquo;s predictions start degrading, tracking feature drift, and figuring out when to trigger retraining. This is the part that ties everything together into something you could actually run in production.</p>
+<h2 id="what-ive-learned-so-far">What I&rsquo;ve Learned So Far<a hidden class="anchor" aria-hidden="true" href="#what-ive-learned-so-far">#</a></h2>
+<p>A few things that stand out:</p>
+<p><strong>Data work is the real job.</strong> I spent more time on data cleaning and feature engineering than on model training. By a lot. The actual PyTorch and XGBoost code was the easy part.</p>
+<p><strong>Infrastructure matters more than you&rsquo;d think.</strong> Having MLflow and Postgres running on Kubernetes with proper persistent storage made the whole workflow feel real. When I was just saving models to local files and eyeballing training curves in terminal output, it didn&rsquo;t feel like something you could hand off to someone else. Now it does.</p>
+<p><strong>Start with the simplest model.</strong> I&rsquo;m glad I trained a basic linear regression first. It gave me a baseline to beat, and honestly, an MAE of 1.04 is not terrible for this problem. If I&rsquo;d jumped straight to the LSTM I would&rsquo;ve spent way more time tuning it without knowing whether the complexity was justified.</p>
+<p>I&rsquo;ll write follow-up posts as I work through the Kubeflow and monitoring phases. Those are the pieces that turn this from &ldquo;a model that works on my laptop&rdquo; into something closer to a real MLOps pipeline.</p>
+
+
+  </div>
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="http://localhost:35663/tags/machine-learning/">Machine-Learning</a></li>
-      <li><a href="http://localhost:35663/tags/pytorch/">Pytorch</a></li>
-      <li><a href="http://localhost:35663/tags/mlflow/">Mlflow</a></li>
-      <li><a href="http://localhost:35663/tags/kubeflow/">Kubeflow</a></li>
+      <li><a href="http://localhost:1313/tags/machine-learning/">Machine-Learning</a></li>
+      <li><a href="http://localhost:1313/tags/pytorch/">Pytorch</a></li>
+      <li><a href="http://localhost:1313/tags/mlflow/">Mlflow</a></li>
+      <li><a href="http://localhost:1313/tags/kubeflow/">Kubeflow</a></li>
+      <li><a href="http://localhost:1313/tags/kubernetes/">Kubernetes</a></li>
     </ul>
 <nav class="paginav">
-  <a class="next" href="http://localhost:35663/posts/contribute-to-aws-terraform-provider/">
+  <a class="next" href="http://localhost:1313/posts/homelab-kubernetes-cluster/">
     <span class="title">Next »</span>
     <br>
-    <span>Contribute to the aws Terraform Provider</span>
+    <span>Fastest way to create a homelab Kubernetes cluster</span>
   </a>
 </nav>
 
@@ -153,7 +253,7 @@
     </main>
     
 <footer class="footer">
-        <span>&copy; 2026 <a href="http://localhost:35663/">STREBECK</a></span> · 
+        <span>&copy; 2026 <a href="http://localhost:1313/">STREBECK</a></span> · 
 
     <span>
         Powered by
