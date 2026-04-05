@@ -7,6 +7,8 @@ summary: "Building a demand forecasting pipeline from scratch to learn PyTorch, 
 draft: false
 ---
 
+The full project code is available on GitHub: [jstrebeck/demand-forecast-mlops](https://github.com/jstrebeck/demand-forecast-mlops).
+
 I've spent about a week building out a demand forecasting project from scratch as a way to get hands-on with the ML and MLOps tooling I've been wanting to learn. The goal was straightforward: take some real transaction data, predict weekly order volumes, and stand up the full infrastructure to train, track, serve, and eventually retrain models automatically. I wanted to do it all on my own hardware, not in a managed cloud service, because I learn more when I have to figure out the plumbing myself.
 
 This post covers where the project stands today, what's worked, what surprised me, and what's left to build.
@@ -68,6 +70,8 @@ The serving app is a FastAPI service with three endpoints:
 - `/predict/forecast` — multi-week forecast for planning
 
 It pulls the current staging model from MLflow and queries PostgreSQL for the latest features at inference time. Right now it runs locally — deploying it to Kubernetes with KServe is on the list.
+
+![Demand Forecast Comparison](/images/demand-forecast.png)
 
 ## What's Left
 

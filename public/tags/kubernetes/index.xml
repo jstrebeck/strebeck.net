@@ -2,24 +2,26 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Kubernetes on STREBECK</title>
-    <link>http://localhost:42153/tags/kubernetes/</link>
+    <link>http://localhost:45377/tags/kubernetes/</link>
     <description>Recent content in Kubernetes on STREBECK</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 12 Oct 2024 12:30:57 -0800</lastBuildDate>
-    <atom:link href="http://localhost:42153/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 04 Apr 2026 09:24:57 -0700</lastBuildDate>
+    <atom:link href="http://localhost:45377/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Training and Monitoring ML Models With PyTorch, MLflow, and Kubeflow</title>
+      <link>http://localhost:45377/posts/training-and-monitoring-ml-models-with-pytorch-mlflow-and-kubeflow/</link>
+      <pubDate>Sat, 04 Apr 2026 09:24:57 -0700</pubDate>
+      <guid>http://localhost:45377/posts/training-and-monitoring-ml-models-with-pytorch-mlflow-and-kubeflow/</guid>
+      <description>Building a demand forecasting pipeline from scratch to learn PyTorch, MLflow, and Kubeflow on my homelab Kubernetes cluster.</description>
+    </item>
     <item>
       <title>Fastest way to create a homelab Kubernetes cluster</title>
-      <link>http://localhost:42153/posts/homelab-kubernetes-cluster/</link>
+      <link>http://localhost:45377/posts/homelab-kubernetes-cluster/</link>
       <pubDate>Sat, 12 Oct 2024 12:30:57 -0800</pubDate>
-      <guid>http://localhost:42153/posts/homelab-kubernetes-cluster/</guid>
-      <description>&lt;p&gt;Talos is preconfigured operating system that makes it easy to setup your control plane and get nodes added.&lt;/p&gt;
-&lt;p&gt;You can read more about them here.
-&lt;a href=&#34;https://www.talos.dev&#34;&gt;Talos&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;I recommend creating a Proxmox cluster and utilizing this doc &lt;a href=&#34;https://www.talos.dev/v1.8/talos-guides/install/virtualized-platforms/proxmox/&#34;&gt;Talos Proxmox guide&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Once you have a VM created you can follow my &lt;a href=&#34;https://github.com/jstrebeck/Homelab-Configuration&#34;&gt;Homelab-Configuration&lt;/a&gt; to create templates that can be used to deploy as many nodes as you would like.&lt;/p&gt;
-&lt;p&gt;In the end you should have a working cluster
-&lt;img alt=&#34;k9s_image&#34; loading=&#34;lazy&#34; src=&#34;https://k9scli.io/assets/screens/pods.png&#34;&gt;&lt;/p&gt;</description>
+      <guid>http://localhost:45377/posts/homelab-kubernetes-cluster/</guid>
+      <description>&lt;p&gt;If you&amp;rsquo;ve been wanting to run Kubernetes at home but dread the idea of manually bootstrapping kubeadm on a handful of VMs, &lt;a href=&#34;https://www.talos.dev&#34;&gt;Talos Linux&lt;/a&gt; is worth a look. It&amp;rsquo;s a purpose-built OS for Kubernetes — no SSH, no package manager, no shell. You manage the entire thing through an API and config files, which sounds limiting until you realize it means every node is identical and reproducible from day one.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ve been running a Talos cluster on Proxmox for a while now, and it&amp;rsquo;s become the backbone of pretty much everything I tinker with at home. Here&amp;rsquo;s how I set it up and what I&amp;rsquo;m running on it.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
