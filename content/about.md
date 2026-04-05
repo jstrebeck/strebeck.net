@@ -12,18 +12,18 @@ Experienced DevOps engineer with a strong background in managing cloud-based env
 # Experience
 
 - **PayTrace** (4 yrs 7 mos)
-    - DevOps Supervisor — May 2025 - Present
-    - DevOps Engineer — Oct 2021 - May 2025
+    - DevOps Supervisor - May 2025 - Present
+    - DevOps Engineer - Oct 2021 - May 2025
 - **CHAS Health** (3 yrs 10 mos)
-    - Systems Engineer — Mar 2021 - Sep 2021
-    - Service Desk Technician II — Jul 2020 - Mar 2021
-    - Service Desk Technician — Jun 2019 - Jul 2020
-    - Service Desk Intern — Dec 2017 - Jun 2019
+    - Systems Engineer - Mar 2021 - Sep 2021
+    - Service Desk Technician II - Jul 2020 - Mar 2021
+    - Service Desk Technician - Jun 2019 - Jul 2020
+    - Service Desk Intern - Dec 2017 - Jun 2019
 
 # Education
 
-- Master of Business Administration, Information Technology Management — Western Governors University
-- Bachelor of Science, Cloud Computing — Western Governors University
+- Master of Business Administration, Information Technology Management - Western Governors University
+- Bachelor of Science, Cloud Computing - Western Governors University
 
 # Certifications
 

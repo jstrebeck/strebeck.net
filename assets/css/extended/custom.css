@@ -1,0 +1,59 @@
+@font-face {
+    font-family: 'JetBrains Mono';
+    src: url('/fonts/JetBrainsMono-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'JetBrains Mono';
+    src: url('/fonts/JetBrainsMono-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'JetBrains Mono';
+    src: url('/fonts/JetBrainsMono-Italic.woff2') format('woff2');
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'JetBrains Mono';
+    src: url('/fonts/JetBrainsMono-BoldItalic.woff2') format('woff2');
+    font-weight: 700;
+    font-style: italic;
+    font-display: swap;
+}
+
+:root {
+    --main-width: 860px;
+}
+
+body {
+    font-family: 'JetBrains Mono', monospace;
+}
+
+/* One Dark heading colors */
+.post-content h1 { color: #e06c75; }
+.post-content h2 { color: #61afef; }
+.post-content h3 { color: #98c379; }
+.post-content h4 { color: #c678dd; }
+.post-content h5 { color: #e5c07b; }
+.post-content h6 { color: #56b6c2; }
+
+/* One Dark color scheme */
+:root,
+:root[data-theme="dark"] {
+    --theme: #282c34;
+    --entry: #2c313a;
+    --primary: #ffffff;
+    --secondary: #5c6370;
+    --tertiary: #3e4451;
+    --content: #ffffff;
+    --code-block-bg: #21252b;
+    --code-bg: #2c313a;
+    --border: #3e4451;
+    color-scheme: dark;
+}

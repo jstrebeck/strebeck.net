@@ -13,15 +13,30 @@ I've spent about a week building out a demand forecasting project from scratch a
 
 This post covers where the project stands today, what's worked, what surprised me, and what's left to build.
 
-## Why This Project
+# Why This Project
 
-I come from a DevOps background, so Kubernetes and infrastructure are home turf for me. But I wanted to bridge into MLOps, and the best way I know to learn something is to build it end-to-end. Reading docs and watching tutorials only gets you so far — at some point you need to hit real problems with real data.
+I come from a DevOps background, so Kubernetes and infrastructure are home turf for me. But I wanted to bridge into MLOps, and the best way I know to learn something is to build it end-to-end. Reading docs and watching tutorials only gets you so far - at some point you need to hit real problems with real data.
+
+The other motivation is studying for the AWS Machine Learning Engineer – Associate (MLA-C01) certification. Rather than just memorize what SageMaker services do, I wanted to build the equivalent infrastructure myself so I'd actually understand the problems each service solves. Every tool in this project maps to an AWS managed service - the homelab stack is essentially a self-hosted version of what you'd build on SageMaker and its surrounding ecosystem.
+
+| Layer | Tool | AWS Equivalent | MLA-C01 Domain |
+|---|---|---|---|
+| Data Storage | TrueNAS NFS + PostgreSQL | S3 + RDS | Domain 1: Data Preparation |
+| Experiment Tracking | MLflow Tracking Server | SageMaker Experiments | Domain 2: ML Development |
+| Model Registry | MLflow Model Registry | SageMaker Model Registry | Domain 2: ML Development |
+| Pipeline Orchestration | Kubeflow Pipelines | SageMaker Pipelines | Domain 3: Deployment & Orchestration |
+| Model Training | PyTorch (GPU node) | SageMaker Training | Domain 2: ML Development |
+| Model Serving | KServe + FastAPI | SageMaker Endpoints | Domain 3: Deployment & Orchestration |
+| Monitoring | Evidently AI + Grafana | SageMaker Model Monitor | Domain 4: Monitoring & Security |
+| CI/CD | GitHub Actions + Argo CD | CodePipeline + CodeBuild | Domain 4: Monitoring & Security |
+
+When I'm done, I should be able to point at any part of this project and explain both how it works and what the managed AWS equivalent would give you instead. That's a much stronger foundation than flash cards.
 
 I picked demand forecasting because the data is tabular, the problem is well-understood, and it gave me an excuse to touch every layer of the stack: data pipeline, feature engineering, model training, experiment tracking, model registry, serving, and (eventually) automated retraining and monitoring.
 
 ## Phase 1: Data Pipeline and Feature Engineering
 
-This is the part that took longer than I expected. The raw data was CSV exports — messy encoding, grouped report formatting, duplicate records across multiple files. Cleaning that up and getting it into a usable shape was a project in itself.
+This is the part that took longer than I expected. The raw data was CSV exports - messy encoding, grouped report formatting, duplicate records across multiple files. Cleaning that up and getting it into a usable shape was a project in itself.
 
 Once the data was clean, I built out weekly aggregations with zero-fill for weeks where nothing was ordered (sparse demand is the norm here, not the exception). The feature engineering ended up being the most interesting part of this phase:
 
@@ -42,7 +57,7 @@ I trained three models to compare approaches:
 | XGBoost | 0.59 |
 | LSTM | 1.21 |
 
-XGBoost won by a wide margin, which honestly wasn't surprising for tabular data with engineered features. The LSTM was the most fun to build but performed the worst — I think it would need a lot more data and tuning to beat the tree-based approach here.
+XGBoost won by a wide margin, which honestly wasn't surprising for tabular data with engineered features. The LSTM was the most fun to build but performed the worst - I think it would need a lot more data and tuning to beat the tree-based approach here.
 
 One gotcha: MAPE (mean absolute percentage error) looked terrible across all models, but that's because so many weeks have zero or near-zero orders. When your actual value is 1 and you predict 2, that's 100% error by MAPE but only 1 unit off by MAE. For sparse demand like this, MAE tells the real story.
 
@@ -57,7 +72,7 @@ The setup:
 - `mlflow-skinny` client on my workstation for lightweight experiment logging
 - Artifacts stored via `pickle` and `torch.save`
 
-After training, XGBoost got promoted to the MLflow model registry as version 1 with a `staging` alias. Having a proper registry instead of just saving model files to disk changes the workflow completely — now the serving layer can just ask for "the current staging model" without knowing anything about file paths or versions.
+After training, XGBoost got promoted to the MLflow model registry as version 1 with a `staging` alias. Having a proper registry instead of just saving model files to disk changes the workflow completely - now the serving layer can just ask for "the current staging model" without knowing anything about file paths or versions.
 
 ## Phase 5 (partial): Model Serving
 
@@ -65,11 +80,11 @@ I jumped ahead to model serving before tackling Kubeflow pipelines because I wan
 
 The serving app is a FastAPI service with three endpoints:
 
-- `/predict` — single prediction for a given SKU and date
-- `/predict/batch` — multiple SKU predictions in one call
-- `/predict/forecast` — multi-week forecast for planning
+- `/predict` - single prediction for a given SKU and date
+- `/predict/batch` - multiple SKU predictions in one call
+- `/predict/forecast` - multi-week forecast for planning
 
-It pulls the current staging model from MLflow and queries PostgreSQL for the latest features at inference time. Right now it runs locally — deploying it to Kubernetes with KServe is on the list.
+It pulls the current staging model from MLflow and queries PostgreSQL for the latest features at inference time. Right now it runs locally - deploying it to Kubernetes with KServe is on the list.
 
 ![Demand Forecast Comparison](/images/demand-forecast.png)
 
@@ -77,11 +92,11 @@ It pulls the current staging model from MLflow and queries PostgreSQL for the la
 
 Three phases are still outstanding:
 
-**Phase 4: Kubeflow Pipelines** — This is the big one I'm most excited about. Automated retraining pipelines that kick off when new data arrives, retrain the model, evaluate it against the current production model, and promote it if it's better. Haven't started this yet.
+**Phase 4: Kubeflow Pipelines** - This is the big one I'm most excited about. Automated retraining pipelines that kick off when new data arrives, retrain the model, evaluate it against the current production model, and promote it if it's better. Haven't started this yet.
 
-**Phase 5 (remaining): Kubernetes deployment** — Getting the FastAPI serving app onto the cluster with KServe. The app itself is done, it's just the deployment and networking piece left.
+**Phase 5 (remaining): Kubernetes deployment** - Getting the FastAPI serving app onto the cluster with KServe. The app itself is done, it's just the deployment and networking piece left.
 
-**Phase 6: Monitoring and Drift Detection** — Setting up alerts for when the model's predictions start degrading, tracking feature drift, and figuring out when to trigger retraining. This is the part that ties everything together into something you could actually run in production.
+**Phase 6: Monitoring and Drift Detection** - Setting up alerts for when the model's predictions start degrading, tracking feature drift, and figuring out when to trigger retraining. This is the part that ties everything together into something you could actually run in production.
 
 ## What I've Learned So Far
 

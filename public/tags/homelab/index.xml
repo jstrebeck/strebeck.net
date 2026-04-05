@@ -1,20 +1,2 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
-  <channel>
-    <title>Homelab on STREBECK</title>
-    <link>http://localhost:45377/tags/homelab/</link>
-    <description>Recent content in Homelab on STREBECK</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Sat, 12 Oct 2024 12:30:57 -0800</lastBuildDate>
-    <atom:link href="http://localhost:45377/tags/homelab/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Fastest way to create a homelab Kubernetes cluster</title>
-      <link>http://localhost:45377/posts/homelab-kubernetes-cluster/</link>
-      <pubDate>Sat, 12 Oct 2024 12:30:57 -0800</pubDate>
-      <guid>http://localhost:45377/posts/homelab-kubernetes-cluster/</guid>
-      <description>&lt;p&gt;If you&amp;rsquo;ve been wanting to run Kubernetes at home but dread the idea of manually bootstrapping kubeadm on a handful of VMs, &lt;a href=&#34;https://www.talos.dev&#34;&gt;Talos Linux&lt;/a&gt; is worth a look. It&amp;rsquo;s a purpose-built OS for Kubernetes — no SSH, no package manager, no shell. You manage the entire thing through an API and config files, which sounds limiting until you realize it means every node is identical and reproducible from day one.&lt;/p&gt;
-&lt;p&gt;I&amp;rsquo;ve been running a Talos cluster on Proxmox for a while now, and it&amp;rsquo;s become the backbone of pretty much everything I tinker with at home. Here&amp;rsquo;s how I set it up and what I&amp;rsquo;m running on it.&lt;/p&gt;</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Homelab on STREBECK</title><link>https://strebeck.net/tags/homelab/</link><description>Recent content in Homelab on STREBECK</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Sat, 12 Oct 2024 12:30:57 -0800</lastBuildDate><atom:link href="https://strebeck.net/tags/homelab/index.xml" rel="self" type="application/rss+xml"/><item><title>Fastest way to create a homelab Kubernetes cluster</title><link>https://strebeck.net/posts/homelab-kubernetes-cluster/</link><pubDate>Sat, 12 Oct 2024 12:30:57 -0800</pubDate><guid>https://strebeck.net/posts/homelab-kubernetes-cluster/</guid><description>&lt;p&gt;If you&amp;rsquo;ve been wanting to run Kubernetes at home but dread the idea of manually bootstrapping kubeadm on a handful of VMs, &lt;a href="https://www.talos.dev"&gt;Talos Linux&lt;/a&gt; is worth a look. It&amp;rsquo;s a purpose-built OS for Kubernetes - no SSH, no package manager, no shell. You manage the entire thing through an API and config files, which sounds limiting until you realize it means every node is identical and reproducible from day one.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ve been running a Talos cluster on Proxmox for a while now, and it&amp;rsquo;s become the backbone of pretty much everything I tinker with at home. Here&amp;rsquo;s how I set it up and what I&amp;rsquo;m running on it.&lt;/p&gt;</description></item></channel></rss>
