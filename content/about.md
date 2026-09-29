@@ -7,14 +7,18 @@ ShowToc: false
 
 josh@strebeck.net
 
-Experienced DevOps engineer with a strong background in managing cloud-based environments, implementing and maintaining microservices architectures, and utilizing Kubernetes. Proven ability to streamline development and deployment processes, enhance scalability and reliability, and optimize infrastructure costs. Skilled in automating CI/CD pipelines, configuring and managing cloud resources, and ensuring high availability and performance of applications. Adept at collaborating with cross-functional teams to drive continuous improvement and innovation in software delivery practices.
+DevOps Supervisor with 5 years at a PCI DSS-regulated payments company and 9 years in IT.
+
+Led the migration of a monolithic payments platform to microservices on Amazon EKS, cutting AWS costs 12%. Built a Backstage developer platform that put deployments in every engineer's hands. Operate ML fraud detection on SageMaker.
+
+Hands-on with Kubeflow, KServe, MLflow, and self-hosted LLM inference. AWS Solutions Architect Professional, AWS DevOps Engineer Professional, AWS ML Engineer Associate, and CKA certified.
 
 # Experience
 
-- **PayTrace** (4 yrs 7 mos)
+- **PayTrace**
     - DevOps Supervisor - May 2025 - Present
     - DevOps Engineer - Oct 2021 - May 2025
-- **CHAS Health** (3 yrs 10 mos)
+- **CHAS Health**
     - Systems Engineer - Mar 2021 - Sep 2021
     - Service Desk Technician II - Jul 2020 - Mar 2021
     - Service Desk Technician - Jun 2019 - Jul 2020
@@ -29,6 +33,7 @@ Experienced DevOps engineer with a strong background in managing cloud-based env
 
 - AWS Certified Solutions Architect - Professional
 - AWS Certified DevOps Engineer - Professional
+- AWS Certified Machine Learning Engineer - Associate
 - AWS Certified Advanced Networking - Specialty
 - AWS Certified Developer - Associate
 - AWS Certified Solutions Architect - Associate
