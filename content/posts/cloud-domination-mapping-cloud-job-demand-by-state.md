@@ -13,9 +13,15 @@ The first question most new cloud engineers ask is which of the big three platfo
 
 The real goal was to have a small but complete application I could use to practice building on AWS end to end.
 
+Before writing any code I sketched what I wanted the finished map to look like, with each state filled by the color of its leading provider.
+
+![Mockup of the intended result, a US map with states colored orange, blue, and yellow by provider](/images/cloud-domination-idea.jpg)
+
 ## Architecture
 
 The stack is intentionally simple and mostly serverless.
+
+![Architecture diagram: Lambda writes to DynamoDB, an EC2 T2 instance serves the site behind an Elastic Load Balancer and CloudFront with a certificate from AWS Certificate Manager](/images/cloud-domination-diagram.png)
 
 - **Data collection**: A Python function built on `requests` and Beautiful Soup. I had applied for Indeed's API but sat on the waiting list for two months, so I scraped the search results page instead. The function loops over all 50 states and each of the three providers, reads the result count from the page, and writes it to the database. It runs on AWS Lambda on a schedule so the data refreshes on its own.
 - **Storage**: A DynamoDB table with the state name as the partition key and one attribute per provider. The Lambda uses `update_item` with an expression like `set AWS = :p`, so each provider updates independently. Wiring Lambda to DynamoDB only needed an IAM role with access to both, which was a big time saver compared to running a database server.
@@ -26,6 +32,10 @@ Later I added a Dockerfile that packages the site into the official Nginx image 
 
 ## What I Learned
 
-The result was not surprising. AWS led in every single state. The more useful lessons were about the approach itself. Scraping a results page is fragile, and a raw count of postings that mention a keyword is a noisy signal for real demand. If I revisit this I would use a proper API and track the numbers over time to see whether the gap between providers closes.
+The result was not surprising. AWS led in every single state.
+
+![The finished map with all 50 states colored orange for AWS](/images/cloud-domination-final.jpg)
+
+The more useful lessons were about the approach itself. Scraping a results page is fragile, and a raw count of postings that mention a keyword is a noisy signal for real demand. If I revisit this I would use a proper API and track the numbers over time to see whether the gap between providers closes.
 
 Even with those flaws, the project covered scheduling, serverless compute, a NoSQL datastore, IAM, load balancing, CDN caching, and TLS in one small package. That was the point.
