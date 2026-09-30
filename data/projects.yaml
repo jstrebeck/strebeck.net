@@ -1,0 +1,116 @@
+# Projects page. One entry per project, rendered by layouts/shortcodes/argo-apps.html
+# in the style of the Argo CD applications list. `health` defaults to Healthy.
+- name: homelab-configuration
+  project: platform
+  repo: https://github.com/jstrebeck/Homelab-Configuration
+  path: Kubernetes/argocd/apps
+  revision: main
+  destination: in-cluster/argocd
+  note: App of apps for the whole homelab. Talos Kubernetes on Proxmox with Argo CD, Rook-Ceph, MetalLB, Prometheus and an MLflow/KServe ML platform.
+  post: /posts/homelab-configuration-terraform-ansible-and-kubernetes-on-proxmox/
+
+- name: payments-fraud-detection
+  project: fraud
+  repo: https://github.com/jstrebeck/payments-fraud-detection
+  path: deploy/overlays/homelab
+  revision: main
+  destination: in-cluster/fraud
+  note: Real-time fraud scoring on KServe with drift detection and alert-driven retraining through MLflow, deployed by Argo CD from its own overlay.
+
+- name: game-server-platform
+  project: platform
+  repo: https://github.com/jstrebeck/game-server-platform
+  path: deployment
+  revision: main
+  destination: in-cluster/watch2play
+  note: Multi-tenant Minecraft hosting SaaS. Namespace per tenant, one Velocity proxy routing by hostname, Auth0 and Stripe around it.
+  post: /posts/game-server-platform-multi-tenant-minecraft-hosting-on-kubernetes/
+
+- name: demand-forecast-mlops
+  project: mlops
+  repo: https://github.com/jstrebeck/demand-forecast-mlops
+  path: pipelines
+  revision: main
+  destination: in-cluster/mlops
+  note: PyTorch demand forecasting with experiment tracking in MLflow and pipelines on Kubeflow.
+  post: /posts/training-and-monitoring-ml-models-with-pytorch-mlflow-and-kubeflow/
+
+- name: strebflow
+  project: platform
+  repo: https://github.com/jstrebeck/strebflow
+  path: k8s
+  revision: master
+  destination: in-cluster/strebflow
+  note: Autonomous coding pipeline on LangGraph that implements a spec and loops until the acceptance scenarios pass, run as a Kubernetes Job.
+  post: /posts/strebflow-an-autonomous-coding-pipeline-built-on-langgraph/
+
+- name: dotfiles
+  project: workstation
+  repo: https://github.com/jstrebeck/Dotfiles
+  path: stow packages
+  revision: master
+  destination: desktop/~
+  note: Sway on Wayland, shell and helper scripts, reconciled onto a fresh machine with GNU Stow and one bootstrap script.
+  post: /posts/dotfiles-a-reproducible-sway-desktop-with-gnu-stow/
+
+- name: neovim-config
+  project: workstation
+  repo: https://github.com/jstrebeck/neovim-config
+  path: .
+  revision: main
+  destination: desktop/~/.config/nvim
+  note: My editor for everything, built on the NvChad starter and cloned by the dotfiles setup script.
+
+- name: custom-keyboards
+  project: hardware
+  repo: https://github.com/jstrebeck/qmk_firmware/tree/6f7dd71c28859d08f4661c501d80a9a2bc3899c0/keyboards/handwired/jstrebeck
+  path: keyboards/handwired/jstrebeck
+  revision: master
+  destination: desk/usb
+  note: The JS80 and the split JSErgo. Handwired builds with cases designed in Fusion 360 and QMK firmware.
+  post: /posts/custom-keyboard-builds-js80-and-jsergo/
+
+- name: strebeck-net
+  project: web
+  repo: https://github.com/jstrebeck/strebeck.net
+  path: content
+  revision: main
+  destination: github-pages/strebeck.net
+  note: This site. Hugo with the PaperMod theme, built and deployed to GitHub Pages by GitHub Actions on every push.
+
+- name: cloud-resume-project
+  project: aws
+  repo: https://github.com/jstrebeck/Cloud-Resume-Project
+  path: .
+  revision: main
+  destination: aws/cloudfront, then homelab k8s
+  note: The first version of this site, in the spirit of the Cloud Resume Challenge. S3 and CloudFront first, then a container on ECR deployed to the homelab.
+  post: /posts/cloud-resume-project-from-s3-to-ecr-and-kubernetes/
+
+- name: cloud-domination
+  project: aws
+  repo: https://github.com/jstrebeck/Cloud-Domination
+  path: .
+  revision: main
+  destination: aws/lambda, dynamodb, ec2
+  note: Scrapes cloud job postings for all 50 states into DynamoDB on a Lambda schedule and colors a map by the dominant provider.
+  post: /posts/cloud-domination-mapping-cloud-job-demand-by-state/
+
+- name: b2-alerting
+  project: aws
+  repo: https://github.com/jstrebeck/B2-Alerting
+  path: .
+  revision: main
+  destination: aws/lambda
+  note: A Lambda that checks the newest object in a Backblaze B2 bucket and alerts when the nightly backup has not landed.
+  post: /posts/backblaze-b2-backup-alerting-with-python-and-lambda/
+
+- name: cisco-vlan-switch
+  project: high-school
+  repo: https://github.com/jstrebeck/Cisco-Vlan-Switch
+  path: .
+  revision: master
+  destination: lab-switch/Gi1/0/37
+  health: Degraded
+  note: A GTK app that moves a switch port between VLANs over Telnet. A learning project with a hardcoded enable password, kept as a record of where I started.
+  post: /posts/cisco-vlan-switch-a-high-school-gtk-and-python-project/

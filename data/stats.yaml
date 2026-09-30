@@ -1,0 +1,19 @@
+# Stat tiles on the About page, rendered by layouts/shortcodes/stat-row.html
+- title: Role
+  value: DevOps Supervisor
+  color: blue
+- title: Years in IT
+  value: "9"
+  color: green
+- title: AWS certifications
+  value: "7"
+  color: orange
+- title: CKA
+  value: PASS
+  color: green
+- title: Homelab nodes ready
+  value: "4"
+  color: green
+- title: Argo CD apps synced
+  value: "19"
+  color: green

@@ -1,0 +1,81 @@
+/* Grafana style stat panels (About) and Argo CD style application rows (Projects),
+   in the site's One Dark palette. */
+
+.stat-row {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+    margin: 1.5rem 0;
+}
+.stat {
+    background: var(--code-block-bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 8px;
+}
+.stat-title {
+    font-size: 0.7rem;
+    color: var(--primary);
+    margin-bottom: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.stat-value {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 68px;
+    padding: 4px;
+    border-radius: 3px;
+    font-weight: 700;
+    font-size: 1.6rem;
+    line-height: 1.1;
+    color: #21252b;
+}
+.stat-value--green  { background: #98c379; }
+.stat-value--blue   { background: #61afef; font-size: 0.95rem; }
+.stat-value--orange { background: #d19a66; }
+.stat-value--red    { background: #e06c75; }
+
+.argo-list { margin: 1.5rem 0; }
+.argo-app {
+    display: grid;
+    grid-template-columns: 200px 1fr 150px;
+    gap: 12px 20px;
+    align-items: start;
+    background: var(--entry);
+    border: 1px solid var(--border);
+    border-left: 4px solid #98c379;
+    border-radius: 3px;
+    padding: 12px 16px;
+    margin-bottom: 10px;
+    font-size: 0.8rem;
+    line-height: 1.6;
+}
+.argo-app--degraded { border-left-color: #e06c75; }
+.argo-app--degraded .argo-health { color: #e06c75; }
+.argo-label { color: var(--secondary); }
+.argo-name { color: #61afef; font-weight: 700; }
+.argo-col a { box-shadow: none; }
+.argo-col a:hover { text-decoration: underline; }
+.argo-col--src a { color: var(--content); word-break: break-all; }
+.argo-note { color: var(--secondary); font-size: 0.72rem; margin-top: 4px; }
+.argo-col--status { text-align: left; }
+.argo-rev {
+    display: inline-block;
+    background: var(--code-block-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0 10px;
+    font-size: 0.72rem;
+    margin-bottom: 6px;
+}
+.argo-health, .argo-sync { color: #98c379; font-weight: 700; }
+.argo-post { display: inline-block; margin-top: 6px; color: #d19a66; font-weight: 700; }
+
+@media (max-width: 720px) {
+    .stat-row { grid-template-columns: repeat(3, 1fr); }
+    .argo-app { grid-template-columns: 1fr; gap: 8px; }
+}

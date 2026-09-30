@@ -1,0 +1,9 @@
+{{- /* Renders site.Data.stats as a row of Grafana style stat panels. */ -}}
+<div class="stat-row">
+{{- range site.Data.stats }}
+  <div class="stat">
+    <div class="stat-title">{{ .title }}</div>
+    <div class="stat-value stat-value--{{ .color }}">{{ .value }}</div>
+  </div>
+{{- end }}
+</div>

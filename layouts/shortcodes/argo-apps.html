@@ -1,0 +1,24 @@
+{{- /* Renders site.Data.projects as Argo CD style application rows. */ -}}
+<div class="argo-list">
+{{- range site.Data.projects }}
+{{- $health := .health | default "Healthy" }}
+{{- $ok := eq $health "Healthy" }}
+  <div class="argo-app{{ if not $ok }} argo-app--degraded{{ end }}">
+    <div class="argo-col argo-col--id">
+      <div><span class="argo-label">Project:</span> <span>{{ .project }}</span></div>
+      <div><span class="argo-label">Name:</span> <a class="argo-name" href="{{ .repo }}" target="_blank" rel="noopener noreferrer">{{ .name }}</a></div>
+    </div>
+    <div class="argo-col argo-col--src">
+      <div><span class="argo-label">Source:</span> <a href="{{ .repo }}" target="_blank" rel="noopener noreferrer">{{ replace .repo "https://" "" | replaceRE "/tree/[0-9a-f]+/.*$" "" }}/{{ .path }}</a></div>
+      <div><span class="argo-label">Destination:</span> <span>{{ .destination }}</span></div>
+      <div class="argo-note">{{ .note }}</div>
+    </div>
+    <div class="argo-col argo-col--status">
+      <span class="argo-rev">{{ .revision }}</span>
+      <div class="argo-health">{{ if $ok }}&#9829;{{ else }}&#9829;{{ end }} {{ $health }}</div>
+      <div class="argo-sync">&#10003; Synced</div>
+      {{- with .post }}<a class="argo-post" href="{{ . }}">Write-up &rarr;</a>{{ end }}
+    </div>
+  </div>
+{{- end }}
+</div>
