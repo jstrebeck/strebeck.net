@@ -2,7 +2,7 @@
 title: "Homelab Configuration: GitOps on Talos Kubernetes with Argo CD"
 date: "2026-01-18T18:28:23-08:00"
 author: "Josh Strebeck"
-tags: ["homelab", "kubernetes", "talos", "argocd", "gitops", "proxmox", "rook-ceph", "mlops", "kserve", "mlflow"]
+tags: ["homelab", "kubernetes", "talos", "argocd", "gitops", "proxmox", "rook-ceph", "prometheus", "grafana", "mlops", "kserve", "mlflow"]
 summary: "Everything my homelab cluster runs is declared in one repository and delivered by Argo CD. Merging to main is the deployment. This is how the platform is built, how the GitOps workflow is guarded, and what runs on top of it."
 draft: false
 ---
@@ -44,6 +44,14 @@ The default Argo CD sync policy is automated sync with pruning and self-heal. Th
 Every pull request runs a validation workflow. A script renders every `Application` exactly as Argo CD would, using Helm with the pinned chart and values, kustomize, or the filtered directory, and fails if a path or values file is missing. The output is checked with kubeconform against the Kubernetes 1.34 schemas and the CRD schemas for Ceph, Prometheus, cert-manager, and KServe. Terraform formatting is checked and gitleaks scans the full history.
 
 Renovate keeps chart and image versions current with a pull request per update on a weekly schedule. The Rook-Ceph operator and cluster charts are grouped so they move together, the KServe charts are grouped the same way, and major upgrades wait for approval. Merging the PR is the upgrade.
+
+## Observability
+
+kube-prometheus-stack runs Prometheus, Alertmanager, and Grafana. Prometheus is configured to pick up every `ServiceMonitor` and `PrometheusRule` in the cluster regardless of labels, so a component becomes monitored by shipping one alongside its manifests. Rook adds the Ceph metrics and alert rules, Argo CD exposes the sync and health of every application, SeaweedFS exposes its own endpoint, and application repos bring their own. Prometheus keeps seven days of metrics on a Ceph volume.
+
+![Homelab overview dashboard in Grafana showing node, Ceph, Argo CD, and alert status](/images/homelab-grafana-overview.jpg)
+
+Dashboards live in Git as ConfigMaps and are loaded by Grafana's sidecar without a restart. Anything built by hand in the UI exists only on Grafana's volume, so the rule is to export it into the repo to keep it. The homelab overview dashboard puts node readiness, CPU and memory, Ceph health and capacity and IOPS, per-application Argo CD sync and health, firing alerts, and workloads missing replicas on one screen. A Kubernetes dashboard covers object counts, requests and limits against capacity, per-namespace usage, CPU throttling, and restarts, and Rook's own Ceph cluster, OSD, and pool dashboards sit alongside the chart's standard set.
 
 ## The ML Platform
 
