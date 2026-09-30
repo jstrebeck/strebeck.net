@@ -11,7 +11,7 @@ josh@strebeck.net
 
 DevOps Supervisor with 5 years at a PCI DSS-regulated payments company and 9 years in IT.
 
-Led the migration of a monolithic payments platform to microservices on Amazon EKS, cutting AWS costs 12%. Built a Backstage developer platform that put deployments in every engineer's hands. Operate ML fraud detection on SageMaker.
+Led the migration of a monolithic payments platform to microservices on Amazon EKS, cutting AWS costs 12%.
 
 Hands-on with Kubeflow, KServe, MLflow, and self-hosted LLM inference. AWS Solutions Architect Professional, AWS DevOps Engineer Professional, AWS ML Engineer Associate, and CKA certified.
 
