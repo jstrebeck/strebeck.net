@@ -16,6 +16,7 @@
   revision: main
   destination: in-cluster/fraud
   note: Real-time fraud scoring on KServe with drift detection and alert-driven retraining through MLflow, deployed by Argo CD from its own overlay.
+  post: /posts/payments-fraud-detection-real-time-scoring-with-automated-retraining/
 
 - name: game-server-platform
   project: platform
